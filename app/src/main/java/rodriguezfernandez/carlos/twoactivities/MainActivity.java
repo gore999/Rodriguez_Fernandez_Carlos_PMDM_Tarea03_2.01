@@ -1,5 +1,6 @@
 package rodriguezfernandez.carlos.twoactivities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchSecondActivity(View view) {
+        Intent intent=new Intent(this,SecondActivity.class);
+        startActivity(intent);
         Log.d(LOG_TAG, "Button clicked!");
     }
 }
