@@ -24,6 +24,15 @@ public class MainActivity extends AppCompatActivity {
         mMessageEditText=findViewById(R.id.editText_main);
         mReplyHeadTextView=findViewById(R.id.text_header_reply);
         mReplyTextView=findViewById(R.id.text_message_reply);
+        //Restaurar estado. Comprobamos si el bundle que recibe como parametro no es nulo.
+        if(savedInstanceState!=null){
+            boolean isVisible=savedInstanceState.getBoolean("replay_visible");
+            if(isVisible){
+                mReplyHeadTextView.setText(savedInstanceState.getString("replay_text"));
+                mReplyHeadTextView.setVisibility(View.VISIBLE);
+                mReplyTextView.setVisibility(View.VISIBLE);
+            }
+        }
         Log.d(LOG_TAG, "-------");
         Log.d(LOG_TAG, "onCreate");
     }
@@ -47,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
                 mReplyTextView.setVisibility(View.VISIBLE);
             }
 
+        }
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mReplyHeadTextView.getVisibility() == View.VISIBLE) {//Si es visible, ponemos en el bundle el valor true para "reply_visible"
+            outState.putBoolean("reply_visible", true);//Es visible (entonces lo son los dos)
+            outState.putString("reply_text",mReplyTextView.getText().toString());//El mensaje de contestacion.
         }
     }
     @Override

@@ -25,6 +25,8 @@ public class SecondActivity extends AppCompatActivity {
         textView.setText(message);
     }
 
+
+
     public void returnReply(View view) {
         String reply=mReply.getText().toString();
         Intent replyIntent=new Intent();
